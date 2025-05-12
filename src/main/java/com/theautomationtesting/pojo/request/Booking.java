@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Booking {
 
-    @SerializedName("firstname")
+    @SerializedName("firstname") //annoation of gson for each field
     @Expose
     private String firstname;
     @SerializedName("lastname")

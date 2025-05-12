@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Auth {
 
-    @SerializedName("username")
+    @SerializedName("username")//annoation of gson for each field
     @Expose
     private String username;
     @SerializedName("password")
