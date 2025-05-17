@@ -98,8 +98,19 @@ public class TestIntegrationFlow1 extends BaseTest {
     @Test(groups = "qa", priority = 4)
     @Owner("AkshathaC")
     @Description("TC#INT1 - Step 4. Delete the Booking by ID")
-    public void testDeleteBookingById() {
+    public void testDeleteBookingById(ITestContext iTestContext) {
+
+        Integer bookingid = (Integer) iTestContext.getAttribute("bookingid");
+        String token=(String)iTestContext.getAttribute("token");
+        String basePathDELETE = APIConstants.CREATE_UPDATE_BOOKING_URL+"/" + bookingid;
+
+        requestSpecification.basePath(basePathDELETE).cookie("token",token);
+        validatableResponse=RestAssured.given().spec(requestSpecification)
+                        .when().delete().then().log().all();
+        validatableResponse.statusCode(201);
         Assert.assertTrue(true);
+
     }
 
-}
+
+    }
