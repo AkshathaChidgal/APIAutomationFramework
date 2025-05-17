@@ -13,6 +13,8 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.util.List;
+
 public class BaseTest {
     // CommonToAll Testcase
     // Base URL, Content Type - json - common
@@ -65,9 +67,18 @@ public String getToken()
     return token;
 }
 
+    public Integer getBookingID() {
+        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL);
+        response = RestAssured.given(requestSpecification).when().log().all().get();
+        List<Integer> bookingIDs = response.jsonPath().getList("bookingid");
+        Integer bookingid = bookingIDs.get(3);
+        return bookingid;
+    }
+
 
     @AfterTest
     // tearDown() is a method used to clean up after each test case runs.
+
     public void tearDown()
     {
         System.out.println("Test is finished");
